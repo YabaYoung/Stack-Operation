@@ -21,7 +21,12 @@ public class ExpressionEvaluation {
             if (stack.isEmpty()) {
                 printError(i, 4);
             } else {
-                
+                char poppedChar = stack.pop();
+                if (!(poppedChar == pair.get(c))) {
+                    printError(i, 1);
+                    error = true;
+                    break;
+                }
             }
         }
         return error;
@@ -31,7 +36,6 @@ public class ExpressionEvaluation {
         pair.put('}', '{');
         pair.put(')', '(');
     }
-
     public static void printError(int location, int errorNo) {
 
         for (int j = 0; j < location; j++) {
