@@ -20,10 +20,13 @@ public class InfixToPostfix {
                 stack.push(c);
             } else if (c == ')' || c == '}') {
                 char top = stack.peek();
-                if (top != '('){
+                if (top != '(' || top != '{') {
                     while (!stack.isEmpty()) {
                         char p = stack.pop();
-                        post+= p;
+                        if (p == '(' || p == '{') {
+                        } else {
+                            post+= p;
+                        }
                     }
                 }
             } else if (c == '+' || c == '-' || c == '*' || c == '/') {
@@ -36,7 +39,7 @@ public class InfixToPostfix {
         }
         while (!stack.isEmpty()) {
             char p = stack.pop();
-            post += p;
+            post+= p;
         }
         return post;
     }
